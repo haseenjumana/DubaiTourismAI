@@ -6,10 +6,22 @@ from openai import OpenAI
 import csv
 import json
 
-# Initialize OpenAI client
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-client = OpenAI(api_key=OPENAI_API_KEY)
-
+# Initialize OpenAI client - check both env vars and streamlit secrets
+try:
+    if hasattr(st, "secrets") and "openai" in st.secrets:
+        OPENAI_API_KEY = st.secrets["openai"]["api_key"]
+    else:
+        OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+except Exception as e:
+    # Fallback to environment variables if secrets access fails
+    print(f"Error accessing Streamlit secrets: {e}")
+    OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+    
+if OPENAI_API_KEY:
+    client = OpenAI(api_key=OPENAI_API_KEY)
+else:
+    st.warning("OPENAI_API_KEY not found in environment variables or Streamlit secrets")
+    client = None
 def get_embedding(text):
     """
     Get embedding for text using OpenAI's embeddings API
