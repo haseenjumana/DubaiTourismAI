@@ -13,7 +13,7 @@ The **Dubai Tourism & Business AI Assistant** is an enterprise-grade, multilingu
 ## ✨ Key Features
 
 ### 🌐 Interactive Experience
-- **Advanced Multilingual Support** - Seamlessly interact in 10+ languages including Arabic, English, Chinese, Russian, and more
+- **Advanced Multilingual Support** - Seamlessly interact in 3 languages ( Arabic, English and hindi)
 - **Voice Interaction System** - Engage with natural voice conversations using ElevenLabs' realistic text-to-speech technology
 - **Context-Aware Responses** - Receive intelligent, contextually relevant information that builds upon previous exchanges
 
