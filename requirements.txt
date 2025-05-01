@@ -1,0 +1,9 @@
+streamlit
+openai
+faiss-cpu
+numpy
+pandas
+pillow
+requests
+trafilatura
+python-dotenv
