@@ -5,6 +5,43 @@ import numpy as np
 from openai import OpenAI
 import csv
 import json
+import streamlit as st  # This import is critical!
+try:
+    import pandas as pd
+except ImportError:
+    print("pandas not installed")
+    pd = None
+try:
+    import numpy as np
+except ImportError:
+    print("numpy not installed")
+    np = None
+try:
+    import faiss
+except ImportError:
+    print("faiss-cpu not installed")
+    faiss = None
+try:
+    from openai import OpenAI
+    # Initialize OpenAI client - check both env vars and streamlit secrets
+    try:
+        if hasattr(st, "secrets") and "openai" in st.secrets:
+            OPENAI_API_KEY = st.secrets["openai"]["api_key"]
+        else:
+            OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+    except Exception as e:
+        # Fallback to environment variables if secrets access fails
+        print(f"Error accessing Streamlit secrets: {e}")
+        OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+        
+    if OPENAI_API_KEY:
+        client = OpenAI(api_key=OPENAI_API_KEY)
+    else:
+        st.warning("OPENAI_API_KEY not found in environment variables or Streamlit secrets")
+        client = None
+except ImportError:
+    print("openai not installed")
+    client = None
 
 # Initialize OpenAI client - check both env vars and streamlit secrets
 try:
