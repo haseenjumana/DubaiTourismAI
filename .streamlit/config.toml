@@ -1,15 +1,6 @@
 [server]
 headless = true
-enableCORS = true
-port = 5000
-address = "127.0.0.1"
-
-[browser]
-gatherUsageStats = false
-
-[theme]
-primaryColor = "#e60000"
-backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#F0F0F0"
-textColor = "#333333"
-font = "sans serif"
+address = "0.0.0.0"
+# Note: Streamlit Cloud will override this port value with 8501
+# Do not change this port or specify a different port in Cloud deployment
+port = 8501
